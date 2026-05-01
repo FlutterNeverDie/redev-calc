@@ -1,7 +1,7 @@
 // ── UI 렌더링 & 이벤트 바인딩 ──────────────────
 
-// 평형별 체크 상태 (기본 전부 체크)
-var burdenChecked = {};
+// 평형별 체크 상태 (기본 전부 해제)
+var burdenChecked = {0: false, 1: false, 2: false, 3: false, 4: false};
 
 function render() {
   var myV = getInputVal();
@@ -154,12 +154,12 @@ function fmtInput(el) {
 
   // 대출 기간 커스텀
   document.getElementById('loanTerm').addEventListener('change', function() {
-    var customInput = document.getElementById('loanTermCustom');
+    var customWrap = document.getElementById('loanTermCustomWrap');
     if (this.value === 'custom') {
-      customInput.style.display = 'block';
-      customInput.focus();
+      customWrap.style.display = 'flex';
+      document.getElementById('loanTermCustom').focus();
     } else {
-      customInput.style.display = 'none';
+      customWrap.style.display = 'none';
     }
     calcLoan();
   });

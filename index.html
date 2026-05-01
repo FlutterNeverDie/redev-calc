@@ -33,6 +33,19 @@
     </div>
   </div>
 
+  <!-- 인쇄 설정 -->
+  <div class="print-settings">
+    <span class="ps-title">인쇄 항목 선택</span>
+    <div class="ps-checks">
+      <label><input type="checkbox" data-target="secRank" checked /> ① 나의 감평가액 순위 추산</label>
+      <label><input type="checkbox" data-target="secBurden" checked /> ② 비례율별 분담금 추산</label>
+      <label><input type="checkbox" data-target="secSupply" /> ③ 분양 세대 수 및 비율</label>
+      <label><input type="checkbox" data-target="loanCard" /> ④ 분담금 대출 시뮬레이션</label>
+      <label><input type="checkbox" data-target="secInvest" checked /> ⑤ 투자금 분석</label>
+      <label><input type="checkbox" data-target="secMemo" checked /> ⑥ 메모</label>
+    </div>
+  </div>
+
   <!-- 입력 영역 (한 줄) -->
   <div class="input-row">
     <div class="input-block">
@@ -51,21 +64,9 @@
     </div>
   </div>
 
-  <!-- 인쇄 설정 -->
-  <div class="print-settings">
-    <span class="ps-title">인쇄 항목 선택</span>
-    <div class="ps-checks">
-      <label><input type="checkbox" data-target="secRank" checked /> 순위 추산</label>
-      <label><input type="checkbox" data-target="secBurden" checked /> 분담금 추산</label>
-
-      <label><input type="checkbox" data-target="loanCard" /> 대출 시뮬레이션</label>
-      <label><input type="checkbox" data-target="secMemo" checked /> 메모</label>
-    </div>
-  </div>
-
   <!-- 순위 추산 -->
   <div class="rank-card" id="secRank">
-    <div class="rank-card-header"><span class="card-title">나의 감평가액 순위 추산 (총 2,250명 기준)</span></div>
+    <div class="rank-card-header"><span class="card-title">① 나의 감평가액 순위 추산 (총 2,250명 기준)</span></div>
     <div class="rank-body" id="rankBody">
       <div class="rank-item"><span class="rank-label">상위</span><span class="rank-value empty" id="rankPct">금액을 입력하세요</span></div>
       <div class="rank-divider"></div>
@@ -78,7 +79,7 @@
   <!-- 비례율별 분담금 추산 -->
   <div class="table-card" id="secBurden">
     <div class="table-card-header">
-      <span class="card-title">비례율별 분담금 추산</span>
+      <span class="card-title">② 비례율별 분담금 추산</span>
       <span class="card-unit">단위: 원</span>
     </div>
     <div class="table-scroll">
@@ -102,7 +103,7 @@
   <!-- 분양 세대 수 및 비율 -->
   <div class="table-card" id="secSupply">
     <div class="table-card-header">
-      <span class="card-title">분양 세대 수 및 비율</span>
+      <span class="card-title">③ 분양 세대 수 및 비율</span>
       <span class="card-unit">총 3,754세대 중 분양 3,290세대(88%), 임대 464세대(12%)</span>
     </div>
     <div class="table-scroll">
@@ -128,7 +129,7 @@
   <!-- 분담금 대출 시뮬레이션 -->
   <div class="loan-card" id="loanCard">
     <div class="loan-card-header">
-      <span class="card-title">분담금 대출 시뮬레이션</span>
+      <span class="card-title">④ 분담금 대출 시뮬레이션</span>
       <span class="card-unit">원리금균등상환 기준</span>
     </div>
     <div class="loan-body">
@@ -151,11 +152,17 @@
         </div>
         <div class="loan-field">
           <label>대출 금액 (직접 수정 가능)</label>
-          <input type="text" id="loanAmount" placeholder="0" inputmode="numeric" autocomplete="off" />
+          <div class="field-with-unit">
+            <input type="text" id="loanAmount" placeholder="0" inputmode="numeric" autocomplete="off" />
+            <span class="field-unit">원</span>
+          </div>
         </div>
         <div class="loan-field">
-          <label>연 이자율 (%)</label>
-          <input type="text" id="loanRate" value="4.5" placeholder="4.5" inputmode="decimal" autocomplete="off" />
+          <label>연 이자율</label>
+          <div class="field-with-unit">
+            <input type="text" id="loanRate" value="4.5" placeholder="4.5" inputmode="decimal" autocomplete="off" />
+            <span class="field-unit">%</span>
+          </div>
         </div>
         <div class="loan-field">
           <label>대출 기간</label>
@@ -170,7 +177,10 @@
             <option value="30">30년</option>
             <option value="custom">직접입력</option>
           </select>
-          <input type="text" id="loanTermCustom" placeholder="년 수 입력" inputmode="numeric" autocomplete="off" style="display:none; margin-top:6px;" />
+          <div class="field-with-unit" id="loanTermCustomWrap" style="display:none; margin-top:6px;">
+            <input type="text" id="loanTermCustom" placeholder="직접입력" inputmode="numeric" autocomplete="off" />
+            <span class="field-unit">년</span>
+          </div>
         </div>
       </div>
       <div class="loan-results" id="loanResults">
@@ -197,26 +207,38 @@
   <!-- 투자금 분석 -->
   <div class="loan-card" id="secInvest">
     <div class="loan-card-header">
-      <span class="card-title">투자금 분석</span>
+      <span class="card-title">⑤ 투자금 분석</span>
       <span class="card-unit">단위: 만원</span>
     </div>
     <div class="loan-body">
       <div class="loan-inputs">
         <div class="loan-field">
           <label>감정가</label>
-          <input type="text" id="investAppraisal" placeholder="0" inputmode="numeric" autocomplete="off" />
+          <div class="field-with-unit">
+            <input type="text" id="investAppraisal" placeholder="0" inputmode="numeric" autocomplete="off" />
+            <span class="field-unit">만원</span>
+          </div>
         </div>
         <div class="loan-field">
           <label>매매금액</label>
-          <input type="text" id="investSale" placeholder="0" inputmode="numeric" autocomplete="off" />
+          <div class="field-with-unit">
+            <input type="text" id="investSale" placeholder="0" inputmode="numeric" autocomplete="off" />
+            <span class="field-unit">만원</span>
+          </div>
         </div>
         <div class="loan-field">
           <label>보증금액</label>
-          <input type="text" id="investDeposit" placeholder="0" inputmode="numeric" autocomplete="off" />
+          <div class="field-with-unit">
+            <input type="text" id="investDeposit" placeholder="0" inputmode="numeric" autocomplete="off" />
+            <span class="field-unit">만원</span>
+          </div>
         </div>
         <div class="loan-field">
-          <label>이주비대출 비율 (%)</label>
-          <input type="text" id="investLoanRate" value="40" placeholder="40" inputmode="decimal" autocomplete="off" />
+          <label>이주비대출 비율</label>
+          <div class="field-with-unit">
+            <input type="text" id="investLoanRate" value="40" placeholder="40" inputmode="decimal" autocomplete="off" />
+            <span class="field-unit">%</span>
+          </div>
         </div>
       </div>
       <div class="loan-results" id="investResults">
@@ -248,7 +270,7 @@
   <!-- 메모 -->
   <div class="memo-card" id="secMemo">
     <div class="memo-card-header">
-      <span class="card-title">메모</span>
+      <span class="card-title">⑥ 메모</span>
     </div>
     <div class="memo-body">
       <textarea id="memoText" placeholder="고객 메모, 상담 내용 등을 자유롭게 입력하세요..."></textarea>

@@ -350,17 +350,16 @@ tr:hover td { background: #f0f4ff; }
     font-family: 'Noto Sans KR', sans-serif; color: #0f172a;
     break-inside: avoid;
   }
-  .print-footer {
-    display: block !important; margin-top: 20px; padding: 18px 24px;
-    border-top: 2px solid #0f172a; text-align: center;
-    font-family: 'Noto Sans KR', sans-serif; color: #0f172a;
-    break-inside: avoid;
-  }
-  .print-footer .pf-name { font-size: 1.05rem; font-weight: 900; letter-spacing: 0.08em; margin-bottom: 6px; }
-  .print-footer .pf-divider { width: 40px; height: 2px; background: #0f172a; margin: 0 auto 8px; }
-  .print-footer .pf-info { font-size: 0.78rem; color: #475569; line-height: 1.8; }
-  .print-footer .pf-info span { margin: 0 8px; color: #cbd5e1; }
-  .input-block, .custom-ratio-block { border: 1px solid #ddd !important; box-shadow: none !important; }
+  .print-footer { display: none !important; }
+  .pf-name { font-size: 1.05rem; font-weight: 900; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .pf-divider { width: 40px; height: 2px; background: #0f172a; margin: 0 auto 8px; }
+  .pf-info { font-size: 0.78rem; color: #475569; line-height: 1.8; }
+  .pf-info span { margin: 0 8px; color: #cbd5e1; }
+  .custom-ratio-block { display: none !important; }
+  #secSupply { display: none !important; }
+  .input-row { display: block !important; }
+  .input-row .input-block { flex: none !important; width: 100% !important; }
+  .input-block { border: 1px solid #ddd !important; box-shadow: none !important; }
   .input-wrap input { border: 1px solid #ddd !important; background: #f9f9f9 !important; }
   .table-card, .rank-card { box-shadow: none !important; break-inside: avoid; border: 1px solid #ddd; }
   table { min-width: 0 !important; font-size: 0.75rem; }

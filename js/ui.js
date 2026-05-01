@@ -165,17 +165,19 @@ function fmtInput(el) {
   });
   document.getElementById('loanTermCustom').addEventListener('input', calcLoan);
 
-  // 분담금 평형 체크박스 이벤트
-  document.getElementById('mainBody').addEventListener('change', function(e) {
-    if (e.target.classList.contains('burden-chk')) {
-      var idx = parseInt(e.target.getAttribute('data-row'));
-      burdenChecked[idx] = e.target.checked;
-      var row = e.target.closest('tr');
-      if (e.target.checked) {
-        row.classList.remove('burden-unchecked');
-      } else {
-        row.classList.add('burden-unchecked');
-      }
+  // 분담금 평형 — 행 클릭 시 체크박스 토글
+  document.getElementById('mainBody').addEventListener('click', function(e) {
+    var row = e.target.closest('tr.burden-row');
+    if (!row) return;
+    var chk = row.querySelector('.burden-chk');
+    if (!chk) return;
+    if (e.target !== chk) chk.checked = !chk.checked;
+    var idx = parseInt(chk.getAttribute('data-row'));
+    burdenChecked[idx] = chk.checked;
+    if (chk.checked) {
+      row.classList.remove('burden-unchecked');
+    } else {
+      row.classList.add('burden-unchecked');
     }
   });
 

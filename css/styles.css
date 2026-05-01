@@ -142,6 +142,7 @@ td:first-child { text-align: left; font-family: 'Noto Sans KR', sans-serif; font
 tr:last-child td { border-bottom: none; }
 tr:nth-child(even) td { background: #f8f9fb; }
 tr:hover td { background: #f0f4ff; }
+tr.burden-row { cursor: pointer; }
 .negative { color: var(--negative) !important; font-weight: 600; }
 .positive { color: var(--positive) !important; font-weight: 600; }
 .rights-row td { background: #f5f3ff; color: var(--rights) !important; font-weight: 700; }
@@ -207,13 +208,15 @@ tr:hover td { background: #f0f4ff; }
   white-space: nowrap;
 }
 .ps-checks {
-  display: flex; flex-direction: column; gap: 8px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px;
 }
 .ps-checks label {
-  display: inline-flex; align-items: center; gap: 5px;
+  display: flex; align-items: center; gap: 8px;
   font-size: 0.76rem; color: var(--text-dim); cursor: pointer;
   user-select: none; white-space: nowrap;
+  padding: 6px 10px; border-radius: 8px; transition: background 0.15s;
 }
+.ps-checks label:hover { background: var(--surface2); }
 .ps-checks input[type="checkbox"] {
   width: 15px; height: 15px; accent-color: var(--primary); cursor: pointer;
 }
@@ -356,7 +359,7 @@ tr:hover td { background: #f0f4ff; }
   .fab-group { display: none !important; }
   .title-block { display: none !important; }
   .print-header {
-    display: block !important; margin-bottom: 20px; padding: 18px 24px;
+    display: block !important; margin-bottom: 12px; padding: 14px 24px;
     border-bottom: 2px solid #0f172a; text-align: center;
     font-family: 'Noto Sans KR', sans-serif; color: #0f172a;
     break-inside: avoid;
@@ -370,9 +373,11 @@ tr:hover td { background: #f0f4ff; }
   #secSupply { display: none !important; }
   .input-row { display: block !important; }
   .input-row .input-block { flex: none !important; width: 100% !important; }
-  .input-block { border: 1px solid #ddd !important; box-shadow: none !important; }
+  .input-block { border: 1px solid #ddd !important; box-shadow: none !important; margin-bottom: 10px !important; padding: 12px 18px !important; }
   .input-wrap input { border: 1px solid #ddd !important; background: #f9f9f9 !important; }
-  .table-card, .rank-card { box-shadow: none !important; break-inside: avoid; border: 1px solid #ddd; }
+  .table-card, .rank-card { box-shadow: none !important; border: 1px solid #ddd; margin-bottom: 10px !important; }
+  .rank-card { padding: 0; }
+  .rank-body { padding: 12px 20px !important; }
   table { min-width: 0 !important; font-size: 0.75rem; }
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
   th { font-size: 0.7rem; padding: 6px 8px; background: var(--surface2) !important; }
@@ -386,7 +391,7 @@ tr:hover td { background: #f0f4ff; }
   tr:nth-child(even) td { background: #f8f9fb !important; }
   .rights-row td { background: #ede9fe !important; }
   .loan-result-item { background: #f3f4f6 !important; }
-  .loan-card { break-inside: avoid; }
+  .loan-card { margin-bottom: 10px !important; }
   .print-settings { display: none !important; }
   .burden-unchecked { display: none !important; }
   .burden-chk { display: none !important; }
@@ -396,7 +401,11 @@ tr:hover td { background: #f0f4ff; }
     border: none !important; background: transparent !important;
     resize: none !important; padding: 8px 0 !important;
   }
-  .memo-card { break-inside: avoid; }
+  .memo-card { margin-bottom: 10px !important; }
+  .loan-body { padding: 14px 18px !important; }
+  .loan-inputs { margin-bottom: 12px !important; }
+  .loan-results { gap: 8px !important; }
+  .loan-result-item { padding: 10px 14px !important; }
   .calculator-wrap::after {
     content: '대신 공인중개사사무소';
     position: fixed; top: 50%; left: 50%;

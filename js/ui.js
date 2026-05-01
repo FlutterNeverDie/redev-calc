@@ -124,6 +124,24 @@ function fmtInput(el) {
   document.getElementById('loanRatio').addEventListener('change', updateLoanAmount);
   document.getElementById('loanRate').addEventListener('input', calcLoan);
 
+  // 투자금 분석 이벤트
+  ['investAppraisal', 'investSale', 'investDeposit'].forEach(function(id) {
+    document.getElementById(id).addEventListener('input', function() {
+      var pos = this.selectionStart;
+      var raw = this.value.replace(/,/g, '');
+      if (raw === '') { calcInvest(); return; }
+      var n = parseFloat(raw);
+      if (!isNaN(n)) {
+        var formatted = Math.round(n).toLocaleString('ko-KR');
+        var diff = formatted.length - this.value.length;
+        this.value = formatted;
+        try { this.setSelectionRange(pos + diff, pos + diff); } catch(e) {}
+      }
+      calcInvest();
+    });
+  });
+  document.getElementById('investLoanRate').addEventListener('input', calcInvest);
+
   // 인쇄 항목 토글
   document.querySelectorAll('.ps-checks input[type="checkbox"]').forEach(function(chk) {
     var target = document.getElementById(chk.getAttribute('data-target'));

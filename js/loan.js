@@ -62,3 +62,55 @@ function calcLoan() {
   elTotal.textContent = fmtLoan(total);
   elInterest.textContent = fmtLoan(interest);
 }
+
+// ── 투자금 분석 ─────────────────────────────
+function fmtMan(n) {
+  if (n === null || isNaN(n)) return '-';
+  return Math.round(n).toLocaleString('ko-KR') + '만원';
+}
+
+function calcInvest() {
+  var appraisal = parseFloat(document.getElementById('investAppraisal').value.replace(/,/g, ''));
+  var sale = parseFloat(document.getElementById('investSale').value.replace(/,/g, ''));
+  var deposit = parseFloat(document.getElementById('investDeposit').value.replace(/,/g, ''));
+  var loanRate = parseFloat(document.getElementById('investLoanRate').value);
+
+  var elPremium = document.getElementById('investPremium');
+  var elCash = document.getElementById('investCash');
+  var elMigration = document.getElementById('investMigration');
+  var elAfterLoan = document.getElementById('investAfterLoan');
+
+  if (!sale || isNaN(sale)) {
+    elPremium.textContent = '-';
+    elCash.textContent = '-';
+    elMigration.textContent = '-';
+    elAfterLoan.textContent = '-';
+    return;
+  }
+
+  // 프리미엄 = 매매금액 - 감정가
+  if (appraisal) {
+    elPremium.textContent = fmtMan(sale - appraisal);
+  } else {
+    elPremium.textContent = '-';
+  }
+
+  // 현금투자액 = 매매금액 - 보증금액
+  if (deposit) {
+    elCash.textContent = fmtMan(sale - deposit);
+  } else {
+    elCash.textContent = fmtMan(sale);
+  }
+
+  // 이주비대출 가능액 = 감정가 × 비율
+  var cashInvest = sale - (deposit || 0); // 현금투자액
+  if (appraisal && loanRate) {
+    var migration = appraisal * loanRate / 100;
+    elMigration.textContent = fmtMan(migration);
+    // 대출후 투자금 = (매매가 - 보증금) - 대출가능액
+    elAfterLoan.textContent = fmtMan(cashInvest - migration);
+  } else {
+    elMigration.textContent = '-';
+    elAfterLoan.textContent = '-';
+  }
+}

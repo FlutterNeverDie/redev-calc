@@ -194,6 +194,57 @@
     </div>
   </div>
 
+  <!-- 투자금 분석 -->
+  <div class="loan-card" id="secInvest">
+    <div class="loan-card-header">
+      <span class="card-title">투자금 분석</span>
+      <span class="card-unit">단위: 만원</span>
+    </div>
+    <div class="loan-body">
+      <div class="loan-inputs">
+        <div class="loan-field">
+          <label>감정가</label>
+          <input type="text" id="investAppraisal" placeholder="0" inputmode="numeric" autocomplete="off" />
+        </div>
+        <div class="loan-field">
+          <label>매매금액</label>
+          <input type="text" id="investSale" placeholder="0" inputmode="numeric" autocomplete="off" />
+        </div>
+        <div class="loan-field">
+          <label>보증금액</label>
+          <input type="text" id="investDeposit" placeholder="0" inputmode="numeric" autocomplete="off" />
+        </div>
+        <div class="loan-field">
+          <label>이주비대출 비율 (%)</label>
+          <input type="text" id="investLoanRate" value="40" placeholder="40" inputmode="decimal" autocomplete="off" />
+        </div>
+      </div>
+      <div class="loan-results" id="investResults">
+        <div class="loan-result-item">
+          <span class="lr-label">프리미엄</span>
+          <span class="lr-value" id="investPremium">-</span>
+          <span class="lr-sub">매매금액 - 감정가</span>
+        </div>
+        <div class="loan-result-item">
+          <span class="lr-label">현금투자액</span>
+          <span class="lr-value highlight" id="investCash">-</span>
+          <span class="lr-sub">매매금액 - 보증금액</span>
+        </div>
+        <div class="loan-result-item">
+          <span class="lr-label">이주비대출 가능액</span>
+          <span class="lr-value" id="investMigration">-</span>
+          <span class="lr-sub">감정가 × 대출비율</span>
+        </div>
+        <div class="loan-result-item">
+          <span class="lr-label">이주비대출후 투자금액</span>
+          <span class="lr-value highlight" id="investAfterLoan">-</span>
+          <span class="lr-sub">매매금액 - 이주비대출액</span>
+        </div>
+      </div>
+      <div class="loan-note">* 이주비대출 비율 및 무이자 여부는 관리처분총회 후 확정됩니다.</div>
+    </div>
+  </div>
+
   <!-- 메모 -->
   <div class="memo-card" id="secMemo">
     <div class="memo-card-header">

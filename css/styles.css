@@ -298,6 +298,11 @@ tr:hover td { background: #f0f4ff; }
 .memo-body textarea::placeholder { color: #c0c7d0; }
 .memo-body textarea:focus { background: #fff; border-color: var(--primary); }
 
+/* 인쇄 전용 헤더 */
+.print-header {
+  display: none;
+}
+
 /* 푸터 - 인쇄 전용 */
 .print-footer {
   display: none;
@@ -339,6 +344,12 @@ tr:hover td { background: #f0f4ff; }
   html, body { height: auto !important; }
   .fab-group { display: none !important; }
   .title-block { display: none !important; }
+  .print-header {
+    display: block !important; margin-bottom: 20px; padding: 18px 24px;
+    border-bottom: 2px solid #0f172a; text-align: center;
+    font-family: 'Noto Sans KR', sans-serif; color: #0f172a;
+    break-inside: avoid;
+  }
   .print-footer {
     display: block !important; margin-top: 20px; padding: 18px 24px;
     border-top: 2px solid #0f172a; text-align: center;

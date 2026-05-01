@@ -1,5 +1,8 @@
 // ── UI 렌더링 & 이벤트 바인딩 ──────────────────
 
+// 평형별 체크 상태 (기본 전부 체크)
+var burdenChecked = {};
+
 function render() {
   var myV = getInputVal();
   var customR = getCustomRatio();
@@ -18,7 +21,8 @@ function render() {
   for (var i = 0; i < priceData.length; i++) {
     var name = priceData[i][0];
     var jo = priceData[i][1];
-    var cells = '<td>' + name + '</td><td>' + fmt(jo) + '</td>';
+    var checked = burdenChecked[i] !== false ? 'checked' : '';
+    var cells = '<td class="chk-cell"><input type="checkbox" class="burden-chk" data-row="' + i + '" ' + checked + ' />' + name + '</td><td>' + fmt(jo) + '</td>';
     for (var j = 0; j < ratios.length; j++) {
       var v = jo - myV * ratios[j];
       cells += '<td class="' + (v < 0 ? 'negative' : 'positive') + '">' + fmt(v) + '</td>';
@@ -29,7 +33,8 @@ function render() {
     } else {
       cells += '<td style="color:#9ca3af">-</td>';
     }
-    rows += '<tr>' + cells + '</tr>';
+    var hideClass = burdenChecked[i] === false ? ' burden-unchecked' : '';
+    rows += '<tr class="burden-row' + hideClass + '">' + cells + '</tr>';
   }
 
   // 권리가액 행
@@ -141,6 +146,20 @@ function fmtInput(el) {
     calcLoan();
   });
   document.getElementById('loanTermCustom').addEventListener('input', calcLoan);
+
+  // 분담금 평형 체크박스 이벤트
+  document.getElementById('mainBody').addEventListener('change', function(e) {
+    if (e.target.classList.contains('burden-chk')) {
+      var idx = parseInt(e.target.getAttribute('data-row'));
+      burdenChecked[idx] = e.target.checked;
+      var row = e.target.closest('tr');
+      if (e.target.checked) {
+        row.classList.remove('burden-unchecked');
+      } else {
+        row.classList.add('burden-unchecked');
+      }
+    }
+  });
 
   // 초기 렌더링
   render();

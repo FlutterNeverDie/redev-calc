@@ -147,6 +147,13 @@ tr:hover td { background: #f0f4ff; }
 .rights-row td { background: #f5f3ff; color: var(--rights) !important; font-weight: 700; }
 .rights-row td:first-child { color: var(--rights) !important; }
 .ratio-label { font-size: 0.65rem; color: var(--text-muted); font-family: 'Noto Sans KR', sans-serif; display: block; font-weight: 400; }
+/* 분담금 평형 체크박스 */
+.chk-cell { display: flex; align-items: center; gap: 8px; }
+.burden-chk {
+  width: 15px; height: 15px; accent-color: var(--primary); cursor: pointer;
+  flex-shrink: 0;
+}
+
 .custom-col { color: var(--rights) !important; }
 .custom-col.negative { color: var(--negative) !important; }
 .custom-col.positive { color: var(--positive) !important; }
@@ -360,6 +367,9 @@ tr:hover td { background: #f0f4ff; }
   .loan-result-item { background: #f3f4f6 !important; }
   .loan-card { break-inside: avoid; }
   .print-settings { display: none !important; }
+  .burden-unchecked { display: none !important; }
+  .burden-chk { display: none !important; }
+  .chk-cell { gap: 0 !important; }
   .print-hide { display: none !important; }
   .memo-body textarea {
     border: none !important; background: transparent !important;

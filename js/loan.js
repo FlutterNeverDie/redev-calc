@@ -103,12 +103,11 @@ function calcInvest() {
   }
 
   // 이주비대출 가능액 = 감정가 × 비율
-  var cashInvest = sale - (deposit || 0); // 현금투자액
   if (appraisal && loanRate) {
     var migration = appraisal * loanRate / 100;
     elMigration.textContent = fmtMan(migration);
-    // 대출후 투자금 = (매매가 - 보증금) - 대출가능액
-    elAfterLoan.textContent = fmtMan(cashInvest - migration);
+    // 이주비대출후 투자금 = 매매가 - 이주비대출액
+    elAfterLoan.textContent = fmtMan(sale - migration);
   } else {
     elMigration.textContent = '-';
     elAfterLoan.textContent = '-';
